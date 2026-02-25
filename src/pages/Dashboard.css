@@ -1,0 +1,178 @@
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 240px;
+  background: #001529;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile { text-align: center; margin-bottom: 30px; }
+.avatar { 
+  width: 60px; height: 60px; background: #4facfe; 
+  border-radius: 50%; margin: 0 auto 10px; 
+  display: flex; align-items: center; justify-content: center;
+}
+
+.menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu button.active {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  background: #f4f7f9;
+}
+
+.title { font-size: 32px; margin-bottom: 20px; color: #001529; }
+
+/* Dashboard Specific */
+.dark-box {
+  background: #001e3c;
+  padding: 30px;
+  border-radius: 15px;
+  min-height: 400px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #cbd5e0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Schedule Specific */
+.schedule-layout {
+  display: flex;
+  gap: 20px;
+}
+
+.form-card, .calendar-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-card { flex: 2; }
+.calendar-card { flex: 1; }
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  background: #cc0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+
+
+
+/* Layout Overrides for Schedule UI */
+.schedule-view-wrapper { padding: 15px; }
+.schedule-header-nav { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+.back-arrow-btn {
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.15); cursor: pointer;
+}
+.header-text { font-size: 28px; color: #1a202c; font-weight: 700; }
+
+.schedule-layout-grid { display: flex; gap: 24px; align-items: flex-start; }
+
+/* The Main Form Card */
+.form-card-container {
+  flex: 1.2; background-color: #cbd5e0; border-radius: 28px; padding: 35px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3);
+}
+.card-title { margin: 0 0 20px 0; font-size: 20px; color: #2d3748; }
+
+.field-group { margin-bottom: 18px; display: flex; flex-direction: column; }
+.field-group label { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #4a5568; }
+.ui-input, .ui-select {
+  padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 14px; background: #fff;
+}
+
+.field-row { display: flex; gap: 15px; }
+.field-row .field-group { flex: 1; }
+.claims-label { font-weight: 700; font-size: 14px; margin: 10px 0; color: #2d3748; }
+.event-info-text { font-size: 13px; color: #718096; margin: 20px 0; }
+
+.btn-create-schedule {
+  width: 100%; padding: 15px; background: #c53030; color: #fff;
+  border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;
+}
+
+/* Sidebar & Calendar UI */
+.schedule-activity-sidebar { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+
+.calendar-card-ui {
+  background: #edf2f7; border-radius: 20px; padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.legend-row { display: flex; justify-content: center; gap: 15px; font-size: 11px; color: #4a5568; margin-bottom: 15px; }
+.dot-ui { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.dot-ui.green { background: #48bb78; }
+.dot-ui.blue { background: #4299e1; }
+.dot-ui.red { background: #f56565; }
+
+.month-navigation { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.nav-arrow { background: none; border: none; font-size: 20px; cursor: pointer; color: #4a5568; }
+.month-name { font-weight: 700; color: #2d3748; }
+
+.calendar-days-labels { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 10px; color: #a0aec0; margin-bottom: 10px; }
+.calendar-grid-numbers { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 8px; }
+.day-num-ui { font-size: 12px; font-weight: 600; padding: 4px; }
+.day-num-ui.green { color: #48bb78; }
+.day-num-ui.red { color: #f56565; }
+.day-num-ui.blue { color: #4299e1; }
+.day-num-ui.pink { color: #ed64a6; }
+.day-num-ui.grey { color: #718096; }
+
+/* Recent Hearings Style */
+.sidebar-subtitle { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #1a202c; }
+.hearing-entry-card {
+  background: #fff; border-radius: 16px; padding: 12px 18px; display: flex;
+  align-items: center; gap: 15px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.entry-date-box { display: flex; flex-direction: column; align-items: center; border-right: 1px solid #edf2f7; padding-right: 15px; }
+.entry-day-name { font-size: 9px; color: #a0aec0; text-transform: uppercase; }
+.entry-day-val { font-size: 18px; font-weight: 800; color: #2d3748; }
+
+.entry-content h4 { margin: 0; font-size: 15px; color: #2d3748; }
+.entry-content p { margin: 4px 0 0; font-size: 11px; color: #718096; }
+.entry-duration { color: #48bb78; font-weight: 700; }
+.entry-view-btn { background: #cbd5e0; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
