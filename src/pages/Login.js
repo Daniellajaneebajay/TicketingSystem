@@ -28,11 +28,11 @@ const Login = () => {
         <div className="form-container">
           <div className="glass-card">
             
-            <div className="input-field">
+            <div className="auth-input-group">
               <input type="email" placeholder="Email" />
             </div>
 
-            <div className="input-field">
+            <div className="auth-input-group">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/*ALL PART*/
-
 .auth-wrapper {
   position: relative;
   width: 100%;
@@ -73,14 +71,14 @@
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.input-field {
+.auth-input-group {
   position: relative;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
 }
 
-.input-field input {
+.auth-input-group input {
   width: 100%;
   padding: 12px 45px 12px 15px; 
   border: none;
@@ -234,6 +232,3 @@
   color: #757575;
   font-weight: 400;
 }
-
-/*SCHEDULE PART*/
-

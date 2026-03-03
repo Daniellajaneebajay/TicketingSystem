@@ -15,7 +15,7 @@ const ForgotPassword = () => {
           <h2 className="forgot-title">Forgot Password</h2>
           <p className="forgot-subtitle">Enter the email address registered to you</p>
 
-          <div className="input-field">
+          <div className="auth-input-group">
             <input type="email" />
           </div>
 
@@ -26,7 +26,7 @@ const ForgotPassword = () => {
           </div>
 
           <p className="forgot-subtitle">Enter Verification Code</p>
-          <div className="input-field">
+          <div className="auth-input-group">
             <input type="text" />
           </div>
 

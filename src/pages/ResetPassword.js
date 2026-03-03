@@ -40,7 +40,7 @@ const ResetPassword = () => {
           <h2 className="forgot-title">Reset Password</h2>
           
           <p className="forgot-subtitle">Current Password</p>
-          <div className="input-field">
+          <div className="auth-input-group">
             <input 
               type={showCurrent ? "text" : "password"} 
               value={currentPass}
@@ -52,7 +52,7 @@ const ResetPassword = () => {
           </div>
 
           <p className="forgot-subtitle">New Password</p>
-          <div className="input-field">
+          <div className="auth-input-group">
             <input 
               className={isInvalid ? "input-error" : ""}
               type={showNew ? "text" : "password"} 
@@ -69,7 +69,7 @@ const ResetPassword = () => {
           </div>
 
           <p className="forgot-subtitle">Re-type New Password</p>
-          <div className="input-field">
+          <div className="auth-input-group">
             <input 
               className={isInvalid ? "input-error" : ""}
               type={showConfirm ? "text" : "password"} 

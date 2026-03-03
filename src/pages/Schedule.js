@@ -1,111 +1,171 @@
-import React from 'react';
-import './Dashboard.css';
+import React, { useState } from 'react';
+import './Schedule.css';
+import ActivityLog from './ActivityLog'; // Import the log component we created
+import { FaChevronLeft, FaChevronRight, FaClock, FaChevronDown } from 'react-icons/fa';
 
 const Schedule = () => {
-  // Mock data for calendar colors based on your UI
-  const calendarDays = [
-    { n: 1, c: 'blue' }, { n: 2, c: 'red' }, { n: 3, c: 'red' }, { n: 4, c: 'green' }, { n: 5, c: 'green' }, { n: 6, c: 'pink' }, { n: 7, c: 'pink' },
-    { n: 8, c: 'grey' }, { n: 9, c: 'grey' }, { n: 10, c: 'red' }, { n: 11, c: 'grey' }, { n: 12, c: 'blue' }, { n: 13, c: 'pink' }, { n: 14, c: 'pink' },
-    { n: 15, c: 'green' }, { n: 16, c: 'red' }, { n: 17, c: 'green' }, { n: 18, c: 'green' }, { n: 19, c: 'red' }, { n: 20, c: 'pink' }, { n: 21, c: 'pink' },
-    { n: 22, c: 'blue' }, { n: 23, c: 'green' }, { n: 24, c: 'green' }, { n: 25, c: 'blue' }, { n: 26, c: 'red' }, { n: 27, c: 'pink' }, { n: 28, c: 'pink' },
-  ];
+  // --- NEW STATE FOR NAVIGATION ---
+  const [showLog, setShowLog] = useState(false);
+
+  // Setup state to track the currently viewed month/year
+  const [currentDate, setCurrentDate] = useState(new Date(2026, 1, 1));
+
+  // Calendar Logic Calculations
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const monthName = currentDate.toLocaleString('default', { month: 'long' });
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayIndex = new Date(year, month, 1).getDay();
+  const startingOffset = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+
+  // Handlers for navigation arrows
+  const handlePrevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
+  const handleNextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
+
+  const getDayStatus = (day) => {
+    if ([5, 15, 17, 18, 23, 24].includes(day)) return "available";
+    if ([1, 12, 25].includes(day)) return "limited";
+    if ([2, 3, 10, 16, 19, 26].includes(day)) return "booked";
+    return "";
+  };
+
+  // --- CONDITIONAL RENDERING ---
+  // If showLog is true, render the ActivityLog component instead
+  if (showLog) {
+    return <ActivityLog onBack={() => setShowLog(false)} />;
+  }
 
   return (
-    <div className="schedule-view-wrapper">
-      {/* Header Section */}
-      <div className="schedule-header-nav">
-        <button className="back-arrow-btn">←</button>
-        <h1 className="header-text">Schedule a Meeting</h1>
-      </div>
+    <div className="schedule-page-wrapper">
+      <div className="red-bg-accent"></div>
 
-      <div className="schedule-layout-grid">
-        
-        {/* LEFT CARD: Create New Schedule */}
-        <section className="form-card-container">
-          <h2 className="card-title">Create New Schedule</h2>
+      <div className="schedule-container">
+        {/* LEFT COLUMN: CREATE SCHEDULE */}
+        <div className="create-card">
+          <h2 className="section-title">Create New Schedule</h2>
           
-          <div className="field-group">
+          <div className="input-group">
             <label>Purpose</label>
-            <input type="text" placeholder="Type here" className="ui-input" />
+            <input type="text" className="sched-input" placeholder="Type here" />
           </div>
 
-          <div className="field-row">
-            <div className="field-group">
+          <div className="row-group">
+            <div className="input-group">
               <label>Available day</label>
-              <select className="ui-select"><option>Tuesday 13 Feb, 2026</option></select>
+            <input type="text" className="sched-input-output" placeholder="Type here" />
             </div>
-            <div className="field-group">
+            <div className="input-group">
               <label>Available time</label>
-              <select className="ui-select"><option>09:30 AM - 10:30 AM</option></select>
+            <input type="text" className="sched-input-output" placeholder="Type here" />
             </div>
           </div>
 
-          <p className="claims-label">Claims/Issues</p>
-          <div className="field-row">
-            <div className="field-group">
-              <label>Labor Standards Violations</label>
-              <select className="ui-select"><option>Select</option></select>
+          <label className="group-label">Claims/Issues</label>
+          <div className="row-group">
+            <div className="input-group">
+              <label className="sub-label">Labor Standards Violations</label>
+              <div className="select-wrapper">
+                <select className="sched-input">
+                  <option>Select</option>
+                  <option>Minimum Wage</option>
+                  <option>COLA</option>
+                  <option>Night Shift Differential</option>
+                  <option>Overtime Pay</option>
+                  <option>Holiday Pay</option>
+                  <option>13th Month Pay</option>
+                  <option>Service Charge</option>
+                  <option>Premium Pay for Rest Day</option>
+                  <option>Premium Pay for Special Day</option>
+                  <option>Service Incentive Leave</option>
+                  <option>Maternity Leave</option>
+                  <option>Paternity Leave</option>
+                  <option>Parental Leave for Solo Parent</option>
+                  <option>Leave for Victims of VAWC</option>
+                  <option>Special Leave for Women</option>
+                </select>
+                <FaChevronDown className="select-icon" />
+              </div>
             </div>
-            <div className="field-group">
-              <label>Other Issues</label>
-              <select className="ui-select"><option>Select</option></select>
+            <div className="input-group">
+              <label className="sub-label">Other Issues</label>
+            <input type="text" className="sched-input-output" placeholder="Type here" />
             </div>
           </div>
 
-          <div className="field-group">
+          <div className="input-group">
             <label>Available Hearing Officer</label>
-            <select className="ui-select"><option>Select Officer Name</option></select>
+            <div className="select-wrapper">
+              <select className="sched-input">
+                <option>Select Officer Name</option>
+              </select>
+              <FaChevronDown className="select-icon" />
+            </div>
           </div>
 
-          <p className="event-info-text">
-            Hearing Event: <strong>February 13, from 9:30 am - 10:30 am</strong>
+          <p className="event-summary">
+            Hearing Event: <strong>{monthName} 13, {year} from 9:30 am - 10:30 am</strong>
           </p>
 
-          <button className="btn-create-schedule">Create Schedule</button>
-        </section>
+          <button className="create-btn">Create Schedule</button>
+        </div>
 
-        {/* RIGHT SIDEBAR: Calendar & Recent */}
-        <aside className="schedule-activity-sidebar">
-          <div className="calendar-card-ui">
-            <div className="legend-row">
-              <span><i className="dot-ui green"></i> Available</span>
-              <span><i className="dot-ui blue"></i> Limited Slots</span>
-              <span><i className="dot-ui red"></i> Fully Booked</span>
-            </div>
-            
-            <div className="month-navigation">
-              <button className="nav-arrow">‹</button>
-              <span className="month-name">February 2026</span>
-              <button className="nav-arrow">›</button>
+        {/* RIGHT COLUMN: CALENDAR */}
+        <div className="calendar-card">
+          <div className="legend-bar">
+            <span><span className="dot available-dot"></span> Available</span>
+            <span><span className="dot limited-dot"></span> Limited Slots</span>
+            <span><span className="dot booked-dot"></span> Fully Booked</span>
+          </div>
+
+          <div className="calendar-main-section">
+            <div className="calendar-header">
+              <FaChevronLeft className="nav-arrow" onClick={handlePrevMonth} style={{cursor: 'pointer'}} />
+              <h3>{monthName} {year}</h3>
+              <FaChevronRight className="nav-arrow" onClick={handleNextMonth} style={{cursor: 'pointer'}} />
             </div>
 
-            <div className="calendar-days-labels">
-              <span>Monday</span><span>Tuesday</span><span>Wednesday</span><span>Thursday</span><span>Friday</span><span>Saturday</span><span>Sunday</span>
-            </div>
-            <div className="calendar-grid-numbers">
-              {calendarDays.map((day, idx) => (
-                <span key={idx} className={`day-num-ui ${day.c}`}>{day.n}</span>
+            <div className="calendar-grid">
+              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(d => (
+                <div key={d} className="day-name">{d.substring(0, 3)}</div>
               ))}
+              
+              {Array.from({ length: startingOffset }).map((_, i) => (
+                <div key={`empty-${i}`} className="day-num empty"></div>
+              ))}
+
+              {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => {
+                const dayOfWeek = (startingOffset + day - 1) % 7;
+                const isWeekend = dayOfWeek === 5 || dayOfWeek === 6;
+
+                return (
+                  <div key={day} className={`day-num ${isWeekend ? 'weekend' : getDayStatus(day)}`}>
+                    {day}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          <div className="recent-hearings-list">
-            <h3 className="sidebar-subtitle">Recent Hearings</h3>
-            {[1, 2, 3].map((_, i) => (
-              <div key={i} className="hearing-entry-card">
-                <div className="entry-date-box">
-                  <span className="entry-day-name">Tuesday</span>
-                  <span className="entry-day-val">10</span>
+          <div className="recent-section">
+            <h4>Recent Hearings</h4>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="hearing-item">
+                <div className="hearing-date-box">Tuesday<br/><span>10</span></div>
+                <div className="hearing-info">
+                  <div className="hearing-title">Hearing Review</div>
+                  <div className="hearing-time"><FaClock /> 09:00 to 10:00 am <span><FaClock /> 30 min</span></div>
                 </div>
-                <div className="entry-content">
-                  <h4>Hearing Review</h4>
-                  <p>09:00 to 10:00 am • <span className="entry-duration">30 min</span></p>
-                </div>
-                <button className="entry-view-btn">View</button>
+                {/* --- CLICK HANDLER ADDED HERE --- */}
+                <button 
+                  className="view-btn" 
+                  onClick={() => setShowLog(true)}
+                >
+                  View
+                </button>
               </div>
             ))}
           </div>
-        </aside>
+        </div>
       </div>
     </div>
   );

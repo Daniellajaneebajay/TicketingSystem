@@ -1,23 +1,59 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './pages/Login'; 
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Dashboard from './pages/Dashboard';
+import Schedule from './pages/Schedule';
+import ActivityLog from './pages/ActivityLog';
+import UserManagement from './pages/UserManagement';
+import Sidebar from './pages/Sidebar';
+import Report from './pages/Report'; 
+import Settings from './pages/Settings'; 
+
+// This wrapper handles the Sidebar visibility and the page margin
+const AppLayout = ({ children }) => {
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(true);
+
+  // Define paths that should NOT have a sidebar
+  const authPaths = ['/', '/forgot-password', '/reset-password'];
+  const isAuthPage = authPaths.includes(location.pathname);
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#030a49' }}>
+      {/* Show sidebar only if it's NOT a login/auth page */}
+      {!isAuthPage && <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />}
+      
+      <main style={{ 
+        flex: 1, 
+        transition: 'margin-left 0.3s ease-in-out',
+        // Push content to the right if sidebar is open, otherwise use full screen
+        marginLeft: (!isAuthPage && isOpen) ? '180px' : '0',
+        width: '100%'
+      }}>
+        {children}
+      </main>
+    </div>
+  );
+};
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <AppLayout>
         <Routes>
-          {/* Default page is Login */}
           <Route path="/" element={<Login />} />
-          {/* Path for Forgot Password */}
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          {/* Path for Reset Password */}
           <Route path="/reset-password" element={<ResetPassword />} />
-/>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/activity-log" element={<ActivityLog />} />
+          <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
-      </div>
+      </AppLayout>
     </Router>
   );
 }
