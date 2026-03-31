@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; // Import navigation hook
 import "./Report.css";
 
 const reportData = [
@@ -17,15 +17,15 @@ const reportData = [
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const reports = ["All", "Settle", "Unsettle"];
 
-const Report = () => {
-  const navigate = useNavigate();
+const ReportSettle = () => {
+  const navigate = useNavigate(); // Initialize the navigation function
 
-  // Define the handler clearly inside the component
+  // Function to handle switching between files/routes
   const handleReportChange = (event) => {
     const selectedValue = event.target.value;
 
     if (selectedValue === "Settle") {
-      navigate("/report-settle");
+      navigate("/report-settle"); // Ensure this matches your route path in App.js
     } else if (selectedValue === "Unsettle") {
       navigate("/report-unsettle");
     } else if (selectedValue === "All") {
@@ -36,8 +36,9 @@ const Report = () => {
   return (
     <div className="report-container">
       <div className="report-header">
-        <h1 className="report-title">Monthly Office Report</h1>
+        <h1 className="report-title">Settle Office Report</h1>
 
+        {/* RIGHT SIDE CONTROLS */}
         <div className="header-right-controls">
           <button className="download-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +51,7 @@ const Report = () => {
           <div className="month-selector">
             <label>Select Month: </label>
             <select className="month-dropdown">
-              <option value="">Select</option>
+              <option>Select</option>
               {months.map((m) => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
@@ -59,12 +60,12 @@ const Report = () => {
             <label>Select Report: </label>
             <select 
               className="report-dropdown" 
-              onChange={handleReportChange} // This must match the name above
-              value="All"
+              onChange={handleReportChange} 
+              defaultValue="Settle"
             >
-              {reports.map((r) => (
-                <option key={r} value={r}>
-                  {r}
+              {reports.map((m) => (
+                <option key={m} value={m}>
+                  {m}
                 </option>
               ))}
             </select>
@@ -97,4 +98,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default ReportSettle;

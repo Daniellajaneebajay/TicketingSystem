@@ -93,14 +93,31 @@ const Schedule = () => {
           </div>
 
           <div className="input-group">
-            <label>Available Hearing Officer</label>
-            <div className="select-wrapper">
-              <select className="sched-input">
-                <option>Select Officer Name</option>
-              </select>
-              <FaChevronDown className="select-icon" />
+              <label className="sub-label">Available Hearing Officer </label>
+              <div className="select-wrapper">
+                <select className="sched-input">
+                  <option>Select Officer Name</option>
+                  <option>Minimum Wage</option>
+                  <option>COLA</option>
+                  <option>Night Shift Differential</option>
+                  <option>Overtime Pay</option>
+                  <option>Holiday Pay</option>
+                  <option>13th Month Pay</option>
+                  <option>Service Charge</option>
+                  <option>Premium Pay for Rest Day</option>
+                  <option>Premium Pay for Special Day</option>
+                  <option>Service Incentive Leave</option>
+                  <option>Maternity Leave</option>
+                  <option>Paternity Leave</option>
+                  <option>Parental Leave for Solo Parent</option>
+                  <option>Leave for Victims of VAWC</option>
+                  <option>Special Leave for Women</option>
+                </select>
+                <FaChevronDown className="select-icon" />
+              </div>
             </div>
-          </div>
+
+         
 
           <p className="event-summary">
             Hearing Event: <strong>{monthName} 13, {year} from 9:30 am - 10:30 am</strong>

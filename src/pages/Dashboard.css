@@ -289,3 +289,114 @@ html, body {
 .inner-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
+
+/* ... Keep existing styles for .main-content, .officer-grid, etc. ... */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; 
+}
+
+.details-modal {
+  background: white;
+  padding: 25px 35px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+/* Row for "3rd Hearing" and the "Recent" dropdown */
+.hearing-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  min-height: 32px; /* Maintains layout when dropdown is hidden */
+}
+
+.hearing-count-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.recent-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.modal-mini-select {
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1.5px solid #030a49;
+  background: white;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+}
+
+.modal-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  padding-left: 2px;
+}
+
+/* Light gray pill box */
+.modal-field {
+  background-color: #efefef; 
+  padding: 12px 15px;
+  border-radius: 12px; 
+  color: #666; 
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #000;
+  line-height: 1;
+}
+
+/* ... Keep existing styles for .inner-table and scrolling ... */

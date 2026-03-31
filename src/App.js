@@ -5,10 +5,13 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Schedule from './pages/Schedule';
+import Minutes from './pages/Minutes';
 import ActivityLog from './pages/ActivityLog';
 import UserManagement from './pages/UserManagement';
 import Sidebar from './pages/Sidebar';
-import Report from './pages/Report'; 
+import Report from './pages/Report';
+import ReportSettle from './pages/ReportSettle';
+import ReportUnsettle from './pages/ReportUnsettle'; 
 import Settings from './pages/Settings'; 
 
 // This wrapper handles the Sidebar visibility and the page margin
@@ -48,9 +51,12 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/minutes" element={<Minutes />} />
           <Route path="/activity-log" element={<ActivityLog />} />
           <Route path="/user-management" element={<UserManagement />} />
           <Route path="/report" element={<Report />} />
+          <Route path="/report-settle" element={<ReportSettle />} />
+          <Route path="/report-unsettle" element={<ReportUnsettle />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </AppLayout>

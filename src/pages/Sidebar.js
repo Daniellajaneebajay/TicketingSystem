@@ -12,7 +12,7 @@ const Sidebar = () => {
     { name: "Schedule", path: "/schedule" },
     { name: "Report", path: "/report" },
     { name: "Settings", path: "/settings" },
-    { name: "Logout", path: "/logout" },
+    { name: "Logout", path: "/login" },
   ];
 
   const toggleSidebar = () => setIsOpen(!isOpen);
